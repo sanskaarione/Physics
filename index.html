@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics Course Syllabus</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        /* Custom scrollbar for a more modern look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a202c; /* dark:bg-gray-800 */
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: #1f2937;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4a5568; /* dark:bg-gray-600 */
+            border-radius: 10px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #4b5563;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #718096; /* dark:bg-gray-500 */
+        }
+        .dark ::-webkit-scrollbar-thumb:hover {
+            background: #6b7280;
+        }
+
+        /* Accordion styles */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+        }
+        .accordion-item.active .accordion-content {
+            max-height: 2000px; /* Adjust as needed */
+            transition: max-height 1s ease-in-out;
+        }
+        .accordion-item .icon {
+            transition: transform 0.3s ease-in-out;
+        }
+        .accordion-item.active .icon {
+            transform: rotate(90deg);
+        }
+        
+        /* Toast notification for copy link */
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
+            margin-left: -125px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            padding: 16px;
+            position: fixed;
+            z-index: 50;
+            left: 50%;
+            bottom: 30px;
+            opacity: 0;
+            transition: opacity 0.5s, bottom 0.5s, visibility 0.5s;
+        }
+        #toast.show {
+            visibility: visible;
+            opacity: 1;
+            bottom: 50px;
+        }
+    </style>
+    <script>
+        // Tailwind CSS dark mode configuration
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-300">
+
+    <div id="toast">Link copied to clipboard!</div>
+
+    <div class="container mx-auto px-4 py-8 md:py-12">
+        <!-- Header Section -->
+        <header class="text-center mb-8 md:mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400">
+                Physics Course Syllabus
+            </h1>
+            <p class="text-lg text-gray-600 dark:text-gray-400">Basic & Applied Physics Program</p>
+        </header>
+
+        <!-- Controls Section -->
+        <div class="sticky top-0 z-40 bg-gray-100/80 dark:bg-gray-900/80 backdrop-blur-sm py-4 mb-8">
+            <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-4 items-center">
+                <div class="relative flex-grow w-full">
+                    <input type="text" id="search-input" placeholder="Search for a topic..." class="w-full pl-10 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button id="theme-toggle" class="p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                        <!-- Sun Icon -->
+                        <svg id="theme-toggle-light-icon" class="w-5 h-5 text-gray-600 dark:text-gray-400 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                        <!-- Moon Icon -->
+                        <svg id="theme-toggle-dark-icon" class="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                    </button>
+                    <button id="share-button" class="flex items-center gap-2 px-4 py-3 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 transition">
+                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12s-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"/>
+                        </svg>
+                        Share
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Syllabus Content -->
+        <main id="syllabus-content" class="space-y-12 max-w-4xl mx-auto">
+            
+            <!-- FIRST YEAR -->
+            <section class="syllabus-year">
+                <h2 class="text-2xl md:text-3xl font-bold border-b-2 border-blue-500 pb-2 mb-6 text-gray-800 dark:text-gray-100">FIRST YEAR: Certificate Course in Basic Physics</h2>
+                
+                <!-- Semester I -->
+                <div class="syllabus-semester space-y-4">
+                    <h3 class="text-xl md:text-2xl font-semibold text-gray-700 dark:text-gray-300">Semester I</h3>
+                    <div class="accordion-item bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <button class="accordion-header w-full flex justify-between items-center text-left p-5">
+                            <div class="flex-1">
+                                <p class="font-bold text-lg text-blue-600 dark:text-blue-400">Mechanics</p>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Code: CPP1001 | Credits: 04</p>
+                            </div>
+                            <div class="icon text-gray-500 dark:text-gray-400">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                            </div>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="p-5 border-t border-gray-200 dark:border-gray-700">
+                                <ul class="space-y-4 text-gray-600 dark:text-gray-300">
+                                    <li><strong>Unit I: Vectors Algebra:</strong> Vector algebra, Scalar and vector products, scalar and vector triple products, Derivative of a vector, Del operator, gradient divergence and curl, Gauss divergence theorem, Stokes curl theorem, Green's theorem, Line, surface and volume integral of a vector function.</li>
+                                    <li><strong>Unit II: Gravitation field and potential:</strong> Gravitational field and potential, Gravitational potential energy, Gravitational field Intensity and potential due to various shapes, Gravitational self-energy, Inverse square law, Kepler’s laws.</li>
+                                    <li><strong>Unit III: Conservation Laws:</strong> Frames of reference, Work energy theorem, Conservative forces, Conservation of energy, Centre of mass, Angular momentum, Laws of conservation of energy, linear and angular momentum.</li>
+                                    <li><strong>Unit IV: Dynamics of rigid body and Moment of Inertia:</strong> Translatory and Rotatory motion, Moment of inertia, Theorems of parallel and perpendicular axes, Moment of inertia of various bodies, Kinetic energy of rotation, Compound pendulum.</li>
+                                    <li><strong>Unit V: Properties of Matter:</strong> Elastic constants, Torsion of cylinder, Bending of beam, Viscosity, Stokes’s law, Bernoulli’s theorem, Surface tension.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Semester II -->
+                <div class="syllabus-semester mt-8 space-y-4">
+                    <h3 class="text-xl md:text-2xl font-semibold text-gray-700 dark:text-gray-300">Semester II</h3>
+                     <div class="accordion-item bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <button class="accordion-header w-full flex justify-between items-center text-left p-5">
+                            <div class="flex-1">
+                                <p class="font-bold text-lg text-blue-600 dark:text-blue-400">Electricity and Magnetism</p>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Code: CPP 1003 | Credits: 04</p>
+                            </div>
+                            <div class="icon text-gray-500 dark:text-gray-400">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                            </div>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="p-5 border-t border-gray-200 dark:border-gray-700">
+                                <ul class="space-y-4 text-gray-600 dark:text-gray-300">
+                                    <li><strong>Unit I: Electric field and potential:</strong> Coulomb law, Gauss’ theory, Electric field and potential, Electrostatic energy, Electric field for various distributions.</li>
+                                    <li><strong>Unit II: Electric and Magnetic fields in Matter:</strong> Polarization, Dielectric susceptibility, Clausius-Mossotti relation, Magnetization, Diamagnetic, paramagnetic, ferromagnetic substances, Hysteresis, Langevin’s theories, Weiss theory.</li>
+                                    <li><strong>Unit III: Electric Currents (Steady and Varying):</strong> Current density, Ohm’s law, Kirchhoff’s Laws, Transient current, Growth and decay in L-R and L-C circuits, Capacitor charging/discharging.</li>
+                                    <li><strong>Unit IV: Magnetostatics:</strong> Lorentz force, Bio-Savert’s law, Ampere’s law, Magnetic field calculations, Magnetic vector potential, Energy in Magnetic field.</li>
+                                    <li><strong>Unit V: Electromagnetic Induction and Alternating Current:</strong> Faraday’s laws, Lenz’s law, Self/Mutual inductance, AC circuits (R-C, R-L, L-C-R), Resonance, Quality factor, Power in A.C. circuits.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECOND YEAR -->
+            <section class="syllabus-year">
+                <h2 class="text-2xl md:text-3xl font-bold border-b-2 border-green-500 pb-2 mb-6 text-gray-800 dark:text-gray-100">SECOND YEAR: Diploma in Applied Physics</h2>
+                
+                <!-- Semester III -->
+                <div class="syllabus-semester space-y-4">
+                    <h3 class="text-xl md:text-2xl font-semibold text-gray-700 dark:text-gray-300">Semester III</h3>
+                    <div class="accordion-item bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <button class="accordion-header w-full flex justify-between items-center text-left p-5">
+                            <div class="flex-1">
+                                <p class="font-bold text-lg text-green-600 dark:text-green-400">Thermodynamics and Statistical Physics</p>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Code: DPT 2001 | Credits: 04</p>
+                            </div>
+                            <div class="icon text-gray-500 dark:text-gray-400">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                            </div>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="p-5 border-t border-gray-200 dark:border-gray-700">
+                                <ul class="space-y-4 text-gray-600 dark:text-gray-300">
+                                    <li><strong>Unit I: Basic concepts and First law:</strong> Thermodynamic Systems, Zeroth law, First law, Heat and Work, Adiabatic Processes, Vander Wall equation, Gas expansions.</li>
+                                    <li><strong>Unit II: Second law and Entropy:</strong> Carnot’s Engine, Second law, Thermodynamic scale of temperature, Entropy, T-S diagram, Third law.</li>
+                                    <li><strong>Unit III: Thermodynamic Relations:</strong> Thermodynamic potentials, Maxwell’s equations, Clausius–Clapeyron’s equations, Triple point.</li>
+                                    <li><strong>Unit IV: Transport of Heat and Kinetic theory:</strong> Black body radiation, Stefan Boltzmann Law, Planck’s formula, Kinetic theory of Gases, Law of Equipartition of Energy.</li>
+                                    <li><strong>Unit V: Fundamentals of Statistical Mechanics:</strong> Probability, Ensembles, Phase space, Boltzmann distribution, Classical and Quantum statistics.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Semester IV -->
+                <div class="syllabus-semester mt-8 space-y-4">
+                    <h3 class="text-xl md:text-2xl font-semibold text-gray-700 dark:text-gray-300">Semester IV</h3>
+                    <div class="accordion-item bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <button class="accordion-header w-full flex justify-between items-center text-left p-5">
+                            <div class="flex-1">
+                                <p class="font-bold text-lg text-green-600 dark:text-green-400">Optics</p>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Code: DPT 2003 | Credits: 04</p>
+                            </div>
+                            <div class="icon text-gray-500 dark:text-gray-400">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                            </div>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="p-5 border-t border-gray-200 dark:border-gray-700">
+                                <ul class="space-y-4 text-gray-600 dark:text-gray-300">
+                                    <li><strong>Unit I: Geometrical Optics:</strong> Fermat’s Principle, Cardinal points of an optical system, Thick lens and lens combinations.</li>
+                                    <li><strong>Unit II: Optical Instruments:</strong> Eyepieces (Ramsden’s, Huygen’s), Telescope, Spectrometer, Chromatic and Monochromatic aberrations.</li>
+                                    <li><strong>Unit III: Interference of Light:</strong> Principle of superposition, Two slit interference, Fresnel biprism, Thin films, Haidinger fringes.</li>
+                                    <li><strong>Unit IV: Diffraction of Light:</strong> Fresnel Diffraction (Zone plate, straight edge), Fraunhofer diffraction (Single slit, Double Slit, Grating).</li>
+                                    <li><strong>Unit V: Polarization of Light:</strong> Transverse nature of light, Malus law, Brewster’s law, Nicol prism, Circular and elliptical polarization, Double refraction.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer class="text-center mt-12 pt-6 border-t border-gray-200 dark:border-gray-700">
+            <p class="text-sm text-gray-500 dark:text-gray-400">Department of Physics | Academic Syllabus</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Accordion Functionality ---
+            const accordionItems = document.querySelectorAll('.accordion-item');
+            accordionItems.forEach(item => {
+                const header = item.querySelector('.accordion-header');
+                header.addEventListener('click', () => {
+                    // Optional: Close other open accordions
+                    // document.querySelectorAll('.accordion-item.active').forEach(activeItem => {
+                    //     if (activeItem !== item) activeItem.classList.remove('active');
+                    // });
+                    item.classList.toggle('active');
+                });
+            });
+
+            // --- Theme Toggler ---
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const lightIcon = document.getElementById('theme-toggle-light-icon');
+            const darkIcon = document.getElementById('theme-toggle-dark-icon');
+
+            // Set initial icon state based on current theme
+            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                lightIcon.classList.remove('hidden');
+                darkIcon.classList.add('hidden');
+            } else {
+                document.documentElement.classList.remove('dark');
+                darkIcon.classList.remove('hidden');
+                lightIcon.classList.add('hidden');
+            }
+
+            themeToggleBtn.addEventListener('click', function() {
+                // toggle icons
+                lightIcon.classList.toggle('hidden');
+                darkIcon.classList.toggle('hidden');
+                
+                // toggle theme
+                if (localStorage.getItem('theme')) {
+                    if (localStorage.getItem('theme') === 'light') {
+                        document.documentElement.classList.add('dark');
+                        localStorage.setItem('theme', 'dark');
+                    } else {
+                        document.documentElement.classList.remove('dark');
+                        localStorage.setItem('theme', 'light');
+                    }
+                } else {
+                    if (document.documentElement.classList.contains('dark')) {
+                        document.documentElement.classList.remove('dark');
+                        localStorage.setItem('theme', 'light');
+                    } else {
+                        document.documentElement.classList.add('dark');
+                        localStorage.setItem('theme', 'dark');
+                    }
+                }
+            });
+
+
+            // --- Search Functionality ---
+            const searchInput = document.getElementById('search-input');
+            const content = document.getElementById('syllabus-content');
+            const allItems = content.querySelectorAll('.syllabus-year, .syllabus-semester, .accordion-item');
+
+            searchInput.addEventListener('input', function(e) {
+                const searchTerm = e.target.value.toLowerCase();
+
+                allItems.forEach(item => {
+                    const text = item.textContent.toLowerCase();
+                    if (text.includes(searchTerm)) {
+                        item.style.display = '';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+
+            // --- Share Button (Copy Link) Functionality ---
+            const shareButton = document.getElementById('share-button');
+            const toast = document.getElementById('toast');
+            
+            shareButton.addEventListener('click', () => {
+                // Due to iframe security, navigator.clipboard can be blocked.
+                // Using the document.execCommand('copy') method is a more reliable fallback.
+                copyTextToClipboard(window.location.href);
+            });
+
+            function showToast() {
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            }
+
+            function copyTextToClipboard(text) {
+                const textArea = document.createElement("textarea");
+                textArea.value = text;
+                
+                // Avoid scrolling to bottom
+                textArea.style.top = "0";
+                textArea.style.left = "0";
+                textArea.style.position = "fixed";
+
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+
+                try {
+                    const successful = document.execCommand('copy');
+                    if(successful) showToast();
+                } catch (err) {
+                    console.error('Oops, unable to copy', err);
+                }
+
+                document.body.removeChild(textArea);
+            }
+        });
+    </script>
+</body>
+</html>
