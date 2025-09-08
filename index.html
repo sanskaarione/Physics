@@ -4,11 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daily Plan App</title>
+    <style>
+        /* Simple styling for layout */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .activity {
+            background-color: #fff;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .activity input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        .activity textarea {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+            resize: vertical;
+        }
+    </style>
 </head>
 <body>
-    <div id="root"></div> <!-- This is where your JS app will render -->
+    <h1>Optimized Daily Plan</h1>
+    <div id="schedule"></div>
 
-    <!-- Link to your JavaScript file -->
-    <script src="app.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
