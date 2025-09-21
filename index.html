@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gemini Clone</title>
+    <title>Gemini Clone 2.5</title>
     <!-- Use a simple, modern font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,13 +48,6 @@
             <div class="flex justify-center p-4">
                 <p class="text-gray-500 italic">Start a conversation to see responses here.</p>
             </div>
-            <div class="flex justify-center p-4">
-                <div class="ai-message max-w-3/4 p-3 shadow-md">
-                    <p class="text-sm md:text-base">
-                        The app is running locally and cannot access the Gemini API due to browser security restrictions. To use the chat, please open this file in a development environment or web server.
-                    </p>
-                </div>
-            </div>
         </main>
 
         <!-- Input area -->
@@ -81,9 +74,8 @@
     </div>
 
     <script type="module">
-        // TODO: This is a placeholder for your Gemini API key.
-        // You MUST replace the empty string with your actual API key
-        // to make the application work. You can get a key from Google AI Studio.
+        // IMPORTANT: You MUST get your own Gemini API key and replace the empty string below.
+        // Get your key here: https://ai.google.dev/
         const apiKey = "";
         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
 
@@ -122,6 +114,12 @@
         async function sendMessage() {
             const message = userInput.value.trim();
             if (message === '') return;
+
+            // Check for the API key before attempting a fetch request
+            if (!apiKey || apiKey === "") {
+                addMessage("Please get a Gemini API key and paste it into the 'apiKey' variable in the code.", 'ai');
+                return;
+            }
 
             // Display user message and clear input
             addMessage(message, 'user');
