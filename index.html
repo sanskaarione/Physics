@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gemini Clone</title>
+    <title>Cosmos Chat</title>
     <!-- Use a simple, modern font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,15 +38,22 @@
 
         <!-- Header -->
         <header class="text-center mb-6">
-            <h1 class="text-3xl font-bold text-gray-800">Gemini Clone</h1>
-            <p class="text-sm text-gray-500 mt-2">A simple, personal chat interface powered by the Gemini API</p>
+            <h1 class="text-3xl font-bold text-gray-800">Cosmos Chat</h1>
+            <p class="text-sm text-gray-500 mt-2">Explore the universe of knowledge, one question at a time.</p>
         </header>
 
         <!-- Chat history display area -->
         <main id="chat-history" class="chat-container space-y-4 p-4 rounded-xl shadow-inner bg-gray-100 mb-4 overflow-y-auto">
-            <!-- Messages will be dynamically added here -->
-            <div class="flex justify-center p-4">
-                <p class="text-gray-500 italic">Start a conversation to see responses here.</p>
+            <!-- Example of a pre-existing chat history -->
+            <div class="flex flex-col items-end">
+                <div class="user-message max-w-3/4 p-3 shadow-md">
+                    <p class="text-sm md:text-base whitespace-pre-wrap">Hey Cosmos, what's a fun fact about space?</p>
+                </div>
+            </div>
+            <div class="flex flex-col items-start">
+                <div class="ai-message max-w-3/4 p-3 shadow-md">
+                    <p class="text-sm md:text-base whitespace-pre-wrap">Hello! Did you know that a day on Venus is longer than a year on Venus? It takes 243 Earth days for Venus to rotate on its axis, but only about 225 Earth days for it to orbit the sun.</p>
+                </div>
             </div>
         </main>
 
@@ -84,7 +91,16 @@
         const loadingIndicator = document.getElementById('loading-indicator');
 
         // Initial conversation history for the API payload
-        let conversationHistory = [];
+        let conversationHistory = [
+            {
+                role: "user",
+                parts: [{ text: "Hey Cosmos, what's a fun fact about space?" }]
+            },
+            {
+                role: "model",
+                parts: [{ text: "Hello! Did you know that a day on Venus is longer than a year on Venus? It takes 243 Earth days for Venus to rotate on its axis, but only about 225 Earth days for it to orbit the sun." }]
+            }
+        ];
 
         // Function to create and append a message bubble
         function addMessage(text, sender) {
